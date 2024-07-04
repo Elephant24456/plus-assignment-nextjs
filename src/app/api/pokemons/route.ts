@@ -18,10 +18,12 @@ export const GET = async (request: Request) => {
 
     const allPokemonData = allPokemonResponses.map(([response, speciesResponse], index) => {
       const koreanName = speciesResponse.data.names.find(
-          (name: any) => name.language.name === "ko"
+        (name: any) => name.language.name === "ko"
       );
       return { ...response.data, korean_name: koreanName?.name || null };
     });
+
+    console.log(allPokemonData);
 
     return NextResponse.json(allPokemonData);
   } catch (error) {
